@@ -1,5 +1,7 @@
 import streamlit as st
 from risklens.file_handler import upload_file
+import pandas as pd
+from risklens.metrics_extractor import parse_financial_highlights
 
 def main():
     # App Title
@@ -19,3 +21,20 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# Load Excel
+xls = pd.ExcelFile("sample_capiq_data.xlsx")
+
+# Load sheet
+sheet1 = xls.parse(xls.sheet_names[0], header=None)
+
+# Analyze
+results = parse_financial_highlights(sheet1)
+
+# Preview
+print("Balance Sheet:")
+print(results['balance_sheet'].head())
+
+print("Income Statement:")
+print(results['income_statement'].head())
