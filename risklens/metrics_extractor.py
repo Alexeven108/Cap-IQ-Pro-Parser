@@ -1,20 +1,38 @@
 import pandas as pd
 
-def extract_financial_highlights(xls):
+def parse_financial_highlights(sheet: pd.DataFrame) -> dict:
     """
-    Extracts financial metrics from the 'Financial Highlights' sheet.
-    Returns a structured DataFrame and metadata.
+    Parse financial highlights from a standardized Cap IQ Pro+ export sheet.
+    Returns cleaned Balance Sheet and Income Statement DataFrames.
     """
-    sheet = xls.parse('Financial Highlights', header=None)
+    # Drop top metadata rows
+    financial_data = sheet.iloc[13:].reset_index(drop=True)
 
-    # Extract metadata (company name, ticker, keys)
-    company_name = sheet.iloc[1, 0]
-    identifiers = sheet.iloc[2, 0]
-    # Locate starting point of financial table (usually A14 == row 13 in 0-index)
-    table_start_row = 13
-    table_df = sheet.iloc[table_start_row:].reset_index(drop=True)
+    # Forward fill section headers
+    financial_data.iloc[:, 0] = financial_data.iloc[:, 0].ffill()
 
-    # Forward fill categories (e.g. Balance Sheet ($000), Income Statement ($000))
-    table_df.ffill(axis=0, inplace=True)
+    # Rename columns
+    columns = sheet.iloc[13].tolist()
+    financial_data.columns = ['Category'] + columns[1:]
 
-    return company_name, identifiers, table_df
+    # Drop the original header row
+    financial_data = financial_data.iloc[1:]
+
+    # Split into sections
+    balance_mask = financial_data['Category'].str.contains('Balance Sheet', na=False)
+    income_mask = financial_data['Category'].str.contains('Income Statement', na=False)
+
+    balance_start = balance_mask.idxmax()
+    income_start = income_mask.idxmax()
+
+    balance_df = financial_data.loc[balance_start+1:income_start-1].dropna(how='all')
+    income_df = financial_data.loc[income_start+1:].dropna(how='all')
+
+    # Clean headers
+    balance_df.columns = ['Metric'] + list(balance_df.columns[1:])
+    income_df.columns = ['Metric'] + list(income_df.columns[1:])
+
+    return {
+        "balance_sheet": balance_df.reset_index(drop=True),
+        "income_statement": income_df.reset_index(drop=True)
+    }
