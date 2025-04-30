@@ -41,6 +41,3 @@ Whether you’re looking to analyze a company’s performance or assess investme
 4. Run the Streamlit app:
    ```bash
    streamlit run app.py
-
-
-
