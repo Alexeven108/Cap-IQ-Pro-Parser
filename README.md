@@ -29,3 +29,18 @@ Whether you’re looking to analyze a company’s performance or assess investme
 1. Clone this repo:
    ```bash
    git clone https://github.com/yourusername/sp-cap-iq-pro-parser.git
+
+2. Navigate to the project directory:
+   ```bash
+   cd sp-cap-iq-pro-parser
+
+3. Install the requirements:
+   ```bash
+   pip install -r requirements.txt
+
+4. Run the Streamlit app:
+   ```bash
+   streamlit run app.py
+
+
+
