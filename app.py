@@ -24,7 +24,7 @@ if __name__ == "__main__":
 
 
 # Load Excel
-xls = pd.ExcelFile("sample_capiq_data.")
+xls = pd.ExcelFile("sample_capiq_data.xlsx")
 
 # Load sheet
 sheet1 = xls.parse(xls.sheet_names[0], header=None)
