@@ -20,7 +20,7 @@ def main():
         st.info("You'll be able to run financial metrics analysis here.")
 
 if __name__ == "__main__":
-    main(
+    main()
 
 
 # Load Excel
