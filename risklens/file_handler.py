@@ -16,7 +16,7 @@ def upload_file():
             # Basic cleaning: strip whitespace from headers
             df.columns = df.columns.str.strip()
 
-            st.success("✅ File successfully uploaded and loaded!")
+            st.success("File successfully uploaded and loaded!")
             return df
 
         except Exception as e:
