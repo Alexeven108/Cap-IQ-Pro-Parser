@@ -20,7 +20,7 @@ def upload_file():
             return df
 
         except Exception as e:
-            st.error(f"❌ Error reading the file: {e}")
+            st.error(f"Error reading the file: {e}")
             return None
     else:
         st.info("👆 Please upload an Excel file to get started.")
