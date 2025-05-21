@@ -25,3 +25,5 @@ def upload_file():
     else:
         st.info("👆 Please upload an Excel file to get started.")
         return None
+
+#Now gotta make outline for S&P template

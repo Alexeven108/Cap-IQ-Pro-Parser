@@ -36,3 +36,5 @@ def parse_financial_highlights(sheet: pd.DataFrame) -> dict:
         "balance_sheet": balance_df.reset_index(drop=True),
         "income_statement": income_df.reset_index(drop=True)
     }
+
+#top 3 metrics to try, revenue, profit after tax, EBITDA calculator
