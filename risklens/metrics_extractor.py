@@ -38,3 +38,4 @@ def parse_financial_highlights(sheet: pd.DataFrame) -> dict:
     }
 
 #top 3 metrics to try, revenue, profit after tax, EBITDA calculator
+# extract using Python with Pandas and Numpy
