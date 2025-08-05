@@ -3,4 +3,4 @@
 #maybe makes sense to push to full stack? 2-3 month project
 #going to need a jsx feature in components for frontend and pages
 #maybe a demo idea to showcase to buy side risk team
-#key metrics: liquidity risk, solvency, profitability risk, operational efficiency risk, market risk (optional add ons)
+#key metrics: liquidity risk, solvency, profitability risk, operational efficiency risk, market risk (optional add ons) and more
