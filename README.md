@@ -1,43 +1,44 @@
-# **S&P Cap IQ Pro+ Parser**: Your Financial Risk Detective
+# 🕵️‍♂️ S&P Cap IQ Pro+ Parser: Your Financial Risk Detective
 
-**S&P Cap IQ Pro+ Parser** is your new best friend when it comes to analyzing financial data, uncovering hidden risks, and making smart investment decisions without the hassle. It’s all about making financial risk analysis **easy, accessible**, and **intuitive**, so you can focus on what really matters: making informed, confident decisions.
+**S&P Cap IQ Pro+ Parser** is your new best friend for analyzing financial data, uncovering hidden risks, and making smarter investment decisions — minus the finance gatekeeping. It makes risk analysis **clean**, **accessible**, and **insightful**, so you can focus on what matters: confident, data-backed decisions.
 
-## **What is S&P Cap IQ Pro+ Parser?**
+---
 
-At its core, **S&P Cap IQ Pro+ Parser** is a *power-packed* Streamlit app that lets you upload Excel files containing financial data, crunch some numbers, and see your risk analysis in real-time through interactive tables and graphs. It's designed to **supercharge your risk analysis** by extracting key financial metrics and giving you a clean, clear picture of the risks involved.
+## ⚙️ What is S&P Cap IQ Pro+ Parser?
 
-Whether you’re looking to analyze a company’s performance or assess investment opportunities, **S&P Cap IQ Pro+ Parser** has you covered. And the best part? **No complex financial jargon. Just the facts.**
+At its core, **S&P Cap IQ Pro+ Parser** is a **full-stack financial intelligence dashboard**. You upload Excel files exported from S&P Capital IQ Pro+, and the app handles everything from parsing to calculating risk metrics to displaying beautiful, interactive dashboards in your browser.
 
-## **Key Features**:
+No fluff. No finance PhD needed. Just straight-up clarity.
 
-- 📁 **Upload Excel files**: Drop in your financial data, and let the parser do the rest.
-- 📊 **Financial Metric Extraction**: Automatically pull key metrics from financial reports (powered by S&P Global Cap IQ Pro+ templates).
-- ⚠️ **Risk Analysis**: Get a risk breakdown with simple charts, tables, and scores.
-- 📈 **Interactive Visualization**: Visualize risks with dynamic graphs and metrics—get the story behind the numbers.
-- 🧠 **User-friendly Interface**: Whether you’re a pro or a beginner, navigating the app is as easy as 1-2-3.
+---
 
-## 🔧 **Tech Stack**:
+## 🧩 Key Features
 
-- **Streamlit** – To power the front end.
-- **Pandas & NumPy** – For all that data wrangling magic.
-- **Openpyxl** – Handling those Excel files.
-- **Matplotlib/Seaborn** – For the stunning graphs you’ll be showing off.
-- **S&P Global Cap IQ Pro+ templates** – For extracting financial metrics (the secret sauce).
+- 📁 **Upload Excel Files**: Drop in your Cap IQ exports — we’ll parse them instantly.
+- 🧠 **Automated Financial Risk Analysis**: Get key ratios, trendlines, and red flags — no spreadsheet wrangling required.
+- ⚠️ **Custom Risk Scoring**: Liquidity, solvency, profitability, and operational risk, all broken down.
+- 📊 **Interactive Visualizations**: Real-time charts and metrics in a clean, modern UI.
+- 🧼 **Clean UI/UX**: A frontend that’s fast, minimal, and built for clarity.
 
-## 🚀 **Getting Started**:
+---
 
-1. Clone this repo:
-   ```bash
-   git clone https://github.com/yourusername/sp-cap-iq-pro-parser.git
+## 💻 Tech Stack
 
-2. Navigate to the project directory:
-   ```bash
-   cd sp-cap-iq-pro-parser
+### 🧠 Backend:
+- **Python (FastAPI or Flask)** – High-performance REST API
+- **Pandas, NumPy** – Data wrangling & financial logic
+- **Openpyxl / xlrd** – Excel parsing
+- **SQLAlchemy + PostgreSQL** *(optional)* – Persistent storage
 
-3. Install the requirements:
-   ```bash
-   pip install -r requirements.txt
+### 💻 Frontend:
+- **React.js** – Fast, reactive frontend
+- **TailwindCSS or Chakra UI** – Modern, responsive styling
+- **Recharts / Chart.js** – Interactive graphs
 
-4. Run the Streamlit app:
-   ```bash
-   streamlit run app.py
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repo
+```bash
+git clone https://github.com/yourusername/sp-cap-iq-pro-parser.git
