@@ -25,7 +25,7 @@ async def upload_excel_file(file: UploadFile = File(...)):
         raise HTTPException(status_code=400, detail="Invalid file type. Please upload an Excel file.")
 
     try:
-        # ✅ Step 2: Save the uploaded file to a local directory
+        # ✅ Step 2: Save the uploaded file to a local directory (however if truly local, then potentially S3 buckets)
         file_path = UPLOAD_DIR / file.filename
         with open(file_path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
