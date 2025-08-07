@@ -14,7 +14,7 @@ No fluff. No finance PhD needed. Just straight-up clarity.
 
 ## 🧩 Key Features
 
-- 📁 **Upload Excel Files**: Drop in your Cap IQ exports — we’ll parse them instantly.
+- 📁 **Upload Excel Files**: Drop in your Cap IQ exports - we’ll parse them instantly.
 - 🧠 **Automated Financial Risk Analysis**: Get key ratios, trendlines, and red flags — no spreadsheet wrangling required.
 - ⚠️ **Custom Risk Scoring**: Liquidity, solvency, profitability, and operational risk, all broken down.
 - 📊 **Interactive Visualizations**: Real-time charts and metrics in a clean, modern UI.
