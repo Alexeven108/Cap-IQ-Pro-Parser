@@ -27,3 +27,4 @@ def upload_file():
         return None
 
 #Now gotta make outline for S&P template
+#Needs to be able to handle changing timelines, different financial statements, and more
