@@ -45,7 +45,7 @@ def read_excel(file_path: Union[str, Path]) -> pd.DataFrame:
     try:
         df = pd.read_excel(file_path, sheet_name="Income Statement")
         return df
-        except ValueError:
+    except ValueError:
         print("❌ 'Income Statement' sheet not found in file.")
         return pd.DataFrame()
     except Exception as e:
