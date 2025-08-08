@@ -43,12 +43,14 @@ def read_excel(file_path: Union[str, Path]) -> pd.DataFrame:
         Pandas DataFrame containing the file data
     """
     try:
-        df = pd.read_excel(file_path)  # 🔹 You can add sheet_name= if needed
+        df = pd.read_excel(file_path, sheet_name="Income Statement")
         return df
+        except ValueError:
+        print("❌ 'Income Statement' sheet not found in file.")
+        return pd.DataFrame()
     except Exception as e:
         print(f"❌ Error reading Excel file: {e}")
         return pd.DataFrame()
-
 
 def delete_file(file_path: Union[str, Path]) -> bool:
     """
