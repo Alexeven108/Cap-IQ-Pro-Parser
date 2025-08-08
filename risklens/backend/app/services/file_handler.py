@@ -1,30 +1,88 @@
+import os
+from pathlib import Path
 import pandas as pd
-import streamlit as st
+from uuid import uuid4
+from typing import Union
+
+# Where uploaded files will be stored
+UPLOAD_DIR = Path("uploaded_files")
+UPLOAD_DIR.mkdir(exist_ok=True)
 
 
-def upload_file():
+def save_file(file_obj, original_filename: str) -> Path:
     """
-    Handles file upload via Streamlit and returns a pandas DataFrame.
+    Saves an uploaded file to disk with a unique name to avoid overwriting.
+
+    Args:
+        file_obj: The file object (e.g., from UploadFile.file)
+        original_filename: Name of the uploaded file from user
+
+    Returns:
+        Path to the saved file
     """
-    uploaded_file = st.file_uploader("📂 Upload your Excel file (.xlsx)", type=["xlsx"])
+    # ✅ Step 1: Create a safe filename (UUID prevents duplicates)
+    file_extension = Path(original_filename).suffix
+    unique_filename = f"{uuid4()}{file_extension}"
+    file_path = UPLOAD_DIR / unique_filename
 
-    if uploaded_file is not None:
-        try:
-            # Read the Excel file into a pandas DataFrame
-            df = pd.read_excel(uploaded_file, engine='openpyxl')
+    # ✅ Step 2: Save file to disk
+    with open(file_path, "wb") as f:
+        f.write(file_obj.read())
 
-            # Basic cleaning: strip whitespace from headers
-            df.columns = df.columns.str.strip()
+    return file_path
 
-            st.success("File successfully uploaded and loaded!")
-            return df
 
-        except Exception as e:
-            st.error(f"Error reading the file: {e}")
-            return None
-    else:
-        st.info("👆 Please upload an Excel file to get started.")
-        return None
+def read_excel(file_path: Union[str, Path]) -> pd.DataFrame:
+    """
+    Reads an Excel file and returns it as a pandas DataFrame.
 
-#Now gotta make outline for S&P template
-#Needs to be able to handle changing timelines, different financial statements, and more
+    Args:
+        file_path: Path to the Excel file
+
+    Returns:
+        Pandas DataFrame containing the file data
+    """
+    try:
+        df = pd.read_excel(file_path)  # 🔹 You can add sheet_name= if needed
+        return df
+    except Exception as e:
+        print(f"❌ Error reading Excel file: {e}")
+        return pd.DataFrame()
+
+
+def delete_file(file_path: Union[str, Path]) -> bool:
+    """
+    Deletes a file from disk.
+
+    Args:
+        file_path: Path to the file
+
+    Returns:
+        True if deleted successfully, False otherwise
+    """
+    try:
+        os.remove(file_path)
+        return True
+    except FileNotFoundError:
+        print(f"⚠️ File not found: {file_path}")
+        return False
+    except Exception as e:
+        print(f"❌ Error deleting file: {e}")
+        return False
+
+
+# 🧪 Example usage (comment out in production)
+if __name__ == "__main__":
+    # Pretend we got an uploaded file
+    print("📂 Running file_handler test...")
+
+    # Example: Save → Read → Delete
+    fake_file = open("test.xlsx", "rb")  # Replace with your test file
+    saved_path = save_file(fake_file, "test.xlsx")
+    print(f"✅ Saved to: {saved_path}")
+
+    data = read_excel(saved_path)
+    print(f"📊 Data preview:\n{data.head()}")
+
+    if delete_file(saved_path):
+        print("🗑️ File deleted.")
