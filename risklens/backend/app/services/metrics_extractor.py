@@ -1,41 +1,42 @@
 import pandas as pd
 
-def parse_financial_highlights(sheet: pd.DataFrame) -> dict:
+def parse_income_statement(sheet: pd.DataFrame) -> dict:
     """
-    Parse financial highlights from a standardized Cap IQ Pro+ export sheet.
-    Returns cleaned Balance Sheet and Income Statement DataFrames.
+    Parse the Income Statement from a standardized Cap IQ Pro+ export sheet.
+    Returns a cleaned Income Statement DataFrame.
     """
-    # Drop top metadata rows
+
+    # 1️⃣ Drop top metadata rows that are not part of the financial table
+    # Change '13' if your file has a different number of header rows
     financial_data = sheet.iloc[13:].reset_index(drop=True)
 
-    # Forward fill section headers
+    # 2️⃣ Forward fill section headers in the first column
     financial_data.iloc[:, 0] = financial_data.iloc[:, 0].ffill()
 
-    # Rename columns
+    # 3️⃣ Rename columns so that the first column is 'Category'
+    # Columns in Excel usually have years like 2021, 2022, etc.
     columns = sheet.iloc[13].tolist()
     financial_data.columns = ['Category'] + columns[1:]
 
-    # Drop the original header row
+    # 4️⃣ Remove the original header row inside the data
     financial_data = financial_data.iloc[1:]
 
-    # Split into sections
-    balance_mask = financial_data['Category'].str.contains('Balance Sheet', na=False)
+    # 5️⃣ Create a mask to locate where "Income Statement" starts
     income_mask = financial_data['Category'].str.contains('Income Statement', na=False)
+    income_start = income_mask.idxmax()  # Finds the first row where mask is True
 
-    balance_start = balance_mask.idxmax()
-    income_start = income_mask.idxmax()
-
-    balance_df = financial_data.loc[balance_start+1:income_start-1].dropna(how='all')
+    # 6️⃣ Slice only the rows after "Income Statement" section starts
     income_df = financial_data.loc[income_start+1:].dropna(how='all')
 
-    # Clean headers
-    balance_df.columns = ['Metric'] + list(balance_df.columns[1:])
+    # 7️⃣ Rename columns: First column = "Metric", rest are the year/periods
     income_df.columns = ['Metric'] + list(income_df.columns[1:])
 
-    return {
-        "balance_sheet": balance_df.reset_index(drop=True),
-        "income_statement": income_df.reset_index(drop=True)
-    }
+    # 8️⃣ Optional: Filter for top 3 metrics (Revenue, Profit After Tax, EBITDA)
+    # You can expand this list later
+    important_metrics = ['Revenue', 'Profit After Tax', 'EBITDA']
+    income_df_filtered = income_df[income_df['Metric'].isin(important_metrics)]
 
-#top 3 metrics to try, revenue, profit after tax, EBITDA calculator
-# extract using Python with Pandas and Numpy
+    return {
+        "income_statement_full": income_df.reset_index(drop=True),
+        "income_statement_key_metrics": income_df_filtered.reset_index(drop=True)
+    }
