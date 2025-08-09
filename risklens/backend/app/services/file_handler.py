@@ -34,23 +34,27 @@ def save_file(file_obj, original_filename: str) -> Path:
 
 def read_excel(file_path: Union[str, Path]) -> pd.DataFrame:
     """
-    Reads an Excel file and returns it as a pandas DataFrame.
+    Reads ONLY the 'Income Statement' sheet from an Excel file and returns it as a pandas DataFrame.
 
     Args:
         file_path: Path to the Excel file
 
     Returns:
-        Pandas DataFrame containing the file data
+        Pandas DataFrame containing 'Income Statement' data,
+        or an empty DataFrame if the sheet is not found.
     """
     try:
+        # ✅ We explicitly request only the "Income Statement" sheet
         df = pd.read_excel(file_path, sheet_name="Income Statement")
         return df
     except ValueError:
+        # This happens when the sheet name doesn't exist
         print("❌ 'Income Statement' sheet not found in file.")
         return pd.DataFrame()
     except Exception as e:
         print(f"❌ Error reading Excel file: {e}")
         return pd.DataFrame()
+
 
 def delete_file(file_path: Union[str, Path]) -> bool:
     """
