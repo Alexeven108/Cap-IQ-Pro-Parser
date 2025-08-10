@@ -3,7 +3,7 @@ from pathlib import Path
 import pandas as pd
 from uuid import uuid4
 from typing import Union
-from metrics_extractor import parse_financial_highlights  # ✅ Import your parser
+from metrics_extractor import parse_income_statement  # ✅ Import your parser
 
 # Where uploaded files will be stored
 UPLOAD_DIR = Path("uploaded_files")
@@ -36,7 +36,7 @@ def read_excel(file_path: Union[str, Path]) -> pd.DataFrame:
     Reads ONLY the 'Income Statement' sheet from an Excel file and returns it as a pandas DataFrame.
     """
     try:
-        df = pd.read_excel(file_path, sheet_name="Income Statement")
+        df = pd.read_excel(file_path, sheet_name="Finacial Highlights")
         return df
     except ValueError:
         print("❌ 'Income Statement' sheet not found in file.")
@@ -78,7 +78,7 @@ def process_uploaded_file(file_obj, original_filename: str) -> dict:
         return {}
 
     # Step 3: Extract metrics
-    metrics = parse_financial_highlights(df)
+    metrics = parse_income_statement(df)
 
     # Step 4: Delete file after processing (optional)
     delete_file(file_path)
