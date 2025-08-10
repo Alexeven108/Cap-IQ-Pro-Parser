@@ -4,3 +4,7 @@ numpy
 openpyxl
 matplotlib
 scipy
+fastapi
+uvicorn
+pandas
+openpyxl
