@@ -36,7 +36,7 @@ def read_excel(file_path: Union[str, Path]) -> pd.DataFrame:
     Reads ONLY the 'Income Statement' sheet from an Excel file and returns it as a pandas DataFrame.
     """
     try:
-        df = pd.read_excel(file_path, sheet_name="Finacial Highlights")
+        df = pd.read_excel(file_path, sheet_name="Income Statement")
         return df
     except ValueError:
         print("❌ 'Income Statement' sheet not found in file.")
