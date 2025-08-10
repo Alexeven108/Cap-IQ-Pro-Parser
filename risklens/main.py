@@ -1,7 +1,7 @@
 # main.py
 from fastapi import FastAPI, UploadFile, File
-from file_handler import process_uploaded_file
-from metrics_extractor import parse_income_statement
+from risklens.backend.app.services.file_handler import process_uploaded_file
+from risklens.backend.app.services.metrics_extractor import parse_income_statement
 
 app = FastAPI()
 
