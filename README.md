@@ -6,7 +6,7 @@
 
 ## ⚙️ What is S&P Cap IQ Pro+ Parser?
 
-At its core, **S&P Cap IQ Pro+ Parser** is a **full-stack financial intelligence dashboard**. You upload Excel files exported from S&P Capital IQ Pro+, and the app handles everything from parsing to calculating risk metrics to displaying beautiful, interactive dashboards in your browser.
+At its core, **S&P Cap IQ Pro+ Parser** is a **full-stack financial intelligence dashboard**. You upload Excel files exported from S&P Capital IQ Pro+, the app then handles everything from parsing to calculating risk metrics to displaying beautiful, interactive dashboards in your browser.
 
 No fluff. No finance PhD needed. Just straight-up clarity.
 
