@@ -61,4 +61,4 @@ def parse_income_statement(file_path: str) -> dict:
 
 # Example usage:
 results = parse_income_statement("revolut_income.xlsx")
-# print(results["ratios"]["Gross Margin"])
+print(results["ratios"]["Gross Margin"])
